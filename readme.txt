@@ -38,3 +38,10 @@ insert two example record:
 INSERT INTO `posts` (`id`, `user_id`, `title`, `slug`, `views`, `image`, `body`, `published`, `created_at`, `updated_at`) VALUES
 (1, 1, 'PHP and MySQl Web Dev', 'PHP and MySQl Web Dev', 0, 'banner.jpg', 'coding every day', 1, '2022-09-22 12:12:12', '2022-09-22 12:12:12'),
 (2, 1, 'Second post on blog', 'Second post on blog', 0, 'banner.jpg', 'This is example text', 0, '2022-09-23 12:12:12', '2022-09-23 12:12:12')
+
+create table comments 
+CREATE TABLE `php_blog`.`comments` (`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY , `post_id` INT(11) NOT NULL , `title` VARCHAR(255) NOT NULL , `body` TEXT NOT NULL , `published` TINYINT(1) NOT NULL , `created_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE = InnoDB;
+
+insert an example record: 
+
+INSERT INTO `comments` (`id`, `post_id`, `title`, `body`, `published`, `created_at`, `updated_at`) VALUES (NULL, '1', 'Comment on PHP and MYSQL Web Dev', 'This is a comment on post 1. ', '0', current_timestamp(), current_timestamp());
